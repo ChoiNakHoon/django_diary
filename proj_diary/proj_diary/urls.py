@@ -1,4 +1,4 @@
-"""my_diary URL Configuration
+"""proj_diary URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+import home.views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', home.views.index, name="main"),
+    path('blog/<int:id>/', home.views.detail, name="detail"),
 ]
