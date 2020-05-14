@@ -17,3 +17,9 @@ footer {
     color: white;
     text-align: center;
 }
+
+.writeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
