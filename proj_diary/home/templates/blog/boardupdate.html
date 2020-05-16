@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="writeContainer mt-3">
+        <form action="{% url 'update' post.id %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <h3>제목</h3>
+                {{form.title}}
+            </div>
+            <div>
+                <h3>내용</h3>
+                {{form.descript}}
+            </div>
+            <input type="submit" class="mt-3 btn btn-info" value="수정하기">
+        </form>
+    </div>
+{% endblock %}

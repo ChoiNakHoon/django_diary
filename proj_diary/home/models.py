@@ -10,3 +10,6 @@ class Post(models.Model):
 
     def __str__(self):
         return f'"{self.title}"{self.descript} - {self.cdate}'
+
+    def summary(self):
+        return self.title[:100]

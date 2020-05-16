@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="boardContainer">
+    {% for post in pages %}
+    <h3 class="text-success">{{post.summary}}</h3> <a href="{% url 'detail' post.id %}">...more</a>
+    <p class="mb-3 text-black-50">{{post.author}}이 {{post.cdate|date:"m월 d일 h시 m분"}}에 쓴 글</p>
+    {% endfor%}
+</div>
+
+<nav>
+    <!-- 만약 페이지네이션에 나타날 다른 페이지가 존재한다면 실행 -->
+    {% if pages.has_other_pages %}
+    <ul class="pagination justify-content-center p-3">
+        <!-- 만약 이전 페이지가 있다면 이전 페이지로 이동하는 화살표를 출력 -->
+        {% if pages.has_previous %}
+        <li class="page-item"> <a class="page-link" href="?page={{ pages.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+        <!-- 아니라면 이전 페이지로 이동하는 화살표를 비활성화 -->
+        <li class="page-item"><a class="page-link">&laquo;</a></li>
+        {% endif %}
+
+        <!-- 페이지의 갯수만큼 loop -->
+        {% for index in pages.paginator.page_range %}
+        <!-- current page -->
+        {% if pages.number == index %}
+        <li class="page-item"><span class="page-link text-black-50">{{ index }}</span></li>
+        {% else %}
+        <!-- current page가 아니라면 -->
+        <li class="page-item"><a class="page-link" href="?page={{ index }}">{{ index }}</a></li>
+        {% endif %}
+
+        {% endfor%}
+        <!-- 만약 다음 페이지가 있다면 다음 페이지로 이동하는 화살표를 출력 -->
+        {% if pages.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ pages.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <!-- 아니라면 다음 페이지로 이동하는 화살표를 비활성화 -->
+        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+        {% endif %}
+    </ul>
+    {% endif %}
+</nav>
+{% endblock %}

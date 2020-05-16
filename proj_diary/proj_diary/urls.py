@@ -21,6 +21,9 @@ import home.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home.views.index, name="main"),
-    path('blog/<int:id>/', home.views.detail, name="detail"),
+    path('view/', home.views.boardview, name="boardview"),
+    path('post/<int:id>/', home.views.detail, name="detail"),
+    path('post/<int:post_id>/update', home.views.boardupdate, name="update"),
+    path('post/<int:post_id>/delete', home.views.delete, name="delete"),
     path('new/', home.views.boardwrite, name="boardwrite"),
 ]

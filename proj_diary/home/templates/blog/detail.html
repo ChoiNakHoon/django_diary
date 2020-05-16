@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>디테일 페이지입니다.</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="boardContainer">
+        <h4 class="text-success">{{post.title}}</h4>
+        <p>{{post.descript}}</p>
+        <p class="mb-3 text-black-50">{{post.author}}이 {{post.cdate|date:"m월 d일 h시 m분"}}에 쓴글</p>
+        <a href="{% url 'update' post.id %}" class="p-2 m-1 text-dark bg-info">수정 하기</a>
+        <a href="{% url 'delete' post.id %}" class="p-2 m-1 text-dark bg-warning">삭제 하기</a>
+    </div>
+{% endblock %}
